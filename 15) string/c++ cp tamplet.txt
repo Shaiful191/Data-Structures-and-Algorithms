@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+#define ios             ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define ll              long long
+#define ull             unsinged long long
+#define sp              cout << fixed << setprecision(2);
+#define FON(i,l, n)     for(ll i=1; i<=n; i++)
+#define pb              push_back
+#define Full(a)         a.begin(),a.end()
+#define LCM(a,b)        (a/__gcd(a,b)*b
+#define GCD(a,b)         __gcd(a,b)
+#define min3(a,b,c)     min(a,min(b,c))
+#define max3(a,b,c)     max(a,max(b,c))
+
+void solution(){
+
+}
+
+int main()
+{
+    ios
+    sp
+    ll t;
+    cin >> t;
+    while(t--){
+        //Here solution;
+    }
+
+    return 0;
+}

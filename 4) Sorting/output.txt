@@ -1,0 +1,2 @@
+Enter the array size: Enter the array values:
+1 2 3 4 5 

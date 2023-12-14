@@ -1,0 +1,4 @@
+*Problems can be solved in O(n log n) time, such as
+1) counting the number of distinct elements,
+2) finding the most frequent element, and
+3) finding two elements whose difference is minimum.

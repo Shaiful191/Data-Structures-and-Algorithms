@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.progkriya.org/gyan/shortest-path.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/main.css">
+<link rel="stylesheet" href="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/bootstrap.css">
+<link rel="stylesheet" href="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/bootstrap-responsive.css">
+<link rel="stylesheet" href="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/pygments.css">
+
+<link rel="shortcut icon" type="image/x-icon" href="http://www.progkriya.org/favicon.png">
+
+<link rel="stylesheet" href="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/bootstrap.min.js.download">
+<script src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/all.js.download" async="" crossorigin="anonymous"></script><script id="facebook-jssdk" src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/all.js(1).download"></script><script async="" src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/analytics.js.download"></script><script type="text/x-mathjax-config">
+          MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+        </script>
+<script type="text/javascript" src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/MathJax.js.download"></script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-44538761-1', 'progkriya.org'); ga('send', 'pageview'); 
+        </script>
+<style type="text/css" data-fbcssmodules="css:fb.css.basecss:fb.css.dialog css:fb.css.iframewidget">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style></head>
+<body>
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+<script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+<div class="container">
+<div class="row">
+<div class="span1 offset3">
+<div class="sidebar">
+<div class="icon">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/progkriya50i2.png" title="প্রারম্ভ">
+</a>
+</div>
+<div class="icon">
+<a href="http://www.progkriya.org/news">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/news50.png" title="খবরাখবর">
+</a>
+</div>
+<div class="icon">
+<a href="http://www.progkriya.org/gyan">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/tutorial50.png" title="জ্ঞান">
+</a>
+</div>
+ <div class="icon">
+<a href="http://www.progkriya.org/links">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/link50.png" title="লিংক লাইব্রেরি">
+</a>
+</div>
+<div class="icon">
+<a href="http://www.progkriya.org/features">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/feature50.png" title="ফিচার স্টোরি">
+</a>
+</div>
+</div>
+</div>
+<div class="span7">
+<h2>গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম</h2>
+<div class="meta">
+<i class="icon-user"></i> ইকরাম মাহমুদ |
+<i class="icon-calendar"></i>সেপ্টেম্বর ১৯, ২০১০ </div>
+<div class="post">
+<div class="summary">
+</div>
+<div class="greybox">
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section1" class="olink"> ১ সংজ্ঞা </a>
+</div>
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section2" class="olink"> ২ প্রাথমিক ডাটা স্ট্রাকচার </a>
+</div>
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section3" class="olink"> ৩ ব্রেডথ ফার্স্ট সার্চ </a>
+</div>
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section4" class="olink"> ৪ ডায়াক্সট্রার শর্টেস্ট পাথ অ্যালগরিদম</a>
+</div>
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section5" class="olink">৫ বেলম্যান ফোর্ডের অ্যালগরিদম</a>
+</div>
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section6" class="olink">৬ ফ্লয়েড ওয়ার্শাল </a>
+</div>
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section7" class="olink">৭ টাইম কম্প্লেক্সিটি</a>
+</div>
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section8" class="olink">৮ উপসংহার</a>
+</div>
+<div class="outline1">
+<a href="http://www.progkriya.org/gyan/shortest-path.html#section9" class="olink">৯ প্রবলেম লিস্ট</a>
+</div>
+</div>
+<p><a name="section1"></a></p>
+<h3>১ সংজ্ঞা</h3>
+<p>শর্টেস্ট পাথ এর সংজ্ঞাটা হবে অনেকটা এরকম - আমার যদি অনেকগুলো শহর থাকে, আর শহরগুলোর মধ্যে যদি অনেকগুলো পথ থাকে, (যেই পথগুলোর একেকটার একেকরকমের দৈর্ঘ্য থাকতে পারে - এবং কোন পথে কোন জ্যাম থাকবে না) তাহলে কোন একটা শহর থেকে অন্য আরেকটা শহরে যেই পথ দিয়ে গেলে সবচে' কম দূরত্ব যাওয়া লাগবে সেটা হচ্ছে আমার প্রথম শহরটা থেকে দ্বিতীয় শহরটার শর্টেস্ট পাথ।</p>
+<p>যখন আমরা গ্রাফ থিওরীর টার্মিনোলজিতে কথা বলি, তখন আমরা শহরগুলোকে শহর না বলে বলি নোড (node), আর পথগুলো পথ না বলে বলি এজ (edge), আর আমরা এই পুরো ম্যাপটাকে বলে গ্রাফ (graph)। টার্মিনোলজি শেখাটা ভোকাবুলারি শেখার মতো, অন্যদের সাথে গ্রাফ থিওরী নিয়ে সহজে কথা বলা যায়।</p>
+<p><a name="section2"></a></p>
+<h3>২ প্রাথমিক ডাটা স্ট্রাকচার</h3>
+<p>বেশ তো, কিন্তু প্রথমে চিন্তা করো তুমি কিভাবে, কম্পিউটারে ডাটা হিসেবে শহরগুলোর পথগুলোকে রাখবা। সবচে' সহজভাবে জিনিসটা এভাবে করা যায় - আমি একটা 2D অ্যারে রাখি, <code>distance</code> নামের যেখানে <code>distance[i][j]</code>$i$ তম শহর থেকে <span>$j$</span> তম শহরে যাওয়ার দূরত্ব। তো এই ম্যাট্রিক্সটাকে সাধারণত বলা হয় অ্যাডজাসেন্সি ম্যাট্রিক্স (adjacency matrix)।</p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#define M 100</span>
+<span class="kt">int</span> <span class="n">distance</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span></code></pre></div>
+<p>যদি আমাদের গ্রাফে খুব বেশি নোড না থাকে এভাবে ডাটা রাখতে কোন সমস্যা হবে না। কিন্তু অ্যাডজাসেন্সি ম্যাট্রিক্স এর প্রথম সমস্যা হচ্ছে এটা প্রচুর মেমরি নেয়। ধরো তোমার <span>$20,000$</span>টা শহর আছে আর তাদের মধ্য <span>$50,000$</span> টা পথ আছে। আমার এখানে সবমিলে ডাটা আসলে <span>$50,000$</span>। কিন্তু তুমি যখন অ্যারে ডিক্লেয়ার করতে যাচ্ছো, তোমার <span>$20,000 \times 20,000$</span>সাইজের অ্যারে ডিক্লেয়ার করতে হচ্ছে, যার বেশিরভাগই তুমি ব্যবহার করছো না। আর তোমার মেমরি হয়তো এত জায়গাও নেই। দ্বিতীয় সমস্যা হচ্ছে, তুমি ঠিক জানো না <span>$i$</span> এর সাথে কোন কোন <span>$j$</span> তে পথ আছে। তো তোমার সবগুলো <span>$j$</span> খুঁজে খুঁজে দেখতে হবে সেখান থেকে পথ আছে কি না, যেটা আরো সমস্যা। কারণ এমন হতে পারে <span>$i$</span> নাম্বার শহরটার শুধু একটা শহরের সাথে পথ আছে, আর সেটা আছে সবার শেষ ইন্ডেক্সটাতে। তো এই ক্ষেত্রে আমরা প্রচুর সময় নষ্ট করবো পথ খুঁজতে।</p>
+<p>সহজ উপায় হচ্ছে আমরা দুটো ভেক্টরের অ্যারে রাখতে পারি। ধরো প্রথমটার নাম হচ্ছে edge, দ্বিতীয়টার নাম হচ্ছে cost।</p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#define M 100</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">edge</span><span class="p">[</span><span class="n">M</span><span class="p">],</span> <span class="n">cost</span><span class="p">[</span><span class="n">M</span><span class="p">];</span></code></pre></div>
+<p><code>edge[i]</code> তে থাকবে সবগুলো নোড যাদের i এর সাথে পথ আছে, আর <code>cost[i]</code> তে থাকবে, যথাক্রমে সেই পথগুলোর দূরত্ব।</p>
+<p>মানে ধরো <code>edge[i]</code> এর প্রথম এলিমেন্টটা যদি <span>$23$</span> হয় তাহলে <code>cost[i]</code> এর প্রথম এলিমেন্টটা হবে i থেকে নোড <span>$23$</span> এর দূরত্ব।</p>
+<p><a name="section3"></a></p>
+<h3>৩ ব্রেডথ ফার্স্ট সার্চ (Breadth First Search (BFS))</h3>
+<p>তোমার যদি রিকার্শন জানা থাকে তুমি DFS চালিয়ে দিতে পারো গ্রাফ এর উপর শর্টেস্ট পাথ বের করার জন্য। কিন্তু রিকার্শন একটা ঝামেলার হয়ে যায় আসলে, প্রচুর ফাংশন কল আর ডিপেন্ডেন্সির কারণে জিনিসটা স্লো হয়ে যায়।</p>
+<p>শর্টেস্ট পাথ বের করার একটা সহজ আর কাজের পদ্ধতি হচ্ছে BFS। BFS লেখা বেশ সোজা, মানে কন্টেস্টের সময়ে খুব দ্রুত লিখে ফেলা যায়। আর তুমি যদি হাল্কা পাতলা অপটিমাইজ করতে পারো তাহলে BFS বেশ দ্রুতই কাজ করবে।</p>
+<p>BFS এ আমরা যেটা করি তা হচ্ছে। আমরা একটা কিউ (queue) রাখি, আর একটা দূরত্ব রাখার জন্য অ্যারে রাখি। প্রথমে আমরা ধরে নেই সবার দূরত্ব অসীম, আর শুধু শুরু শহরটার দূরত্ব হচ্ছে শূণ্য। তারপর আমরা কিউতে শুরুর শহরটাকে ঢুকাই।</p>
+<p>এরপর যতক্ষণ না কিউ খালি হচ্ছে ততক্ষণ আমরা করি কি কিউর প্রথমে যেই শহরটা আছে, সেটাকে বের করে আনি প্রসেসিং এর জন্য। তারপর ওটা থেকে যেই শহরগুলোতে যাবার পথ আছে সেই শহরগুলোতে যদি আমরা এই শহরটা থেকে যাই তাহলে যদি আগের চেয়ে কম সময় লাগে যেতে আমরা</p>
+<ul>
+<li>সেই শহরটার নতুন দূরত্ব আপডেট করি</li>
+<li>নতুন দূরত্ব পাওয়া শহরটাকে প্রসেস করার জন্য কিউতে পুশ করি।</li>
+</ul>
+<p>তারপর যতক্ষণ না পর্যন্ত সব শহরগুলোকে প্রসেস হচ্ছে ততক্ষণ ধরে আমরা আপডেট করতে থাকবো। যদি কোন একটা সময় আপডেট আর করা না যায় (মানে, আমরা কোন শহরের জন্যই এমন কোন নতুন পথ পাচ্ছি না যেটা দিয়ে গেলে ওই শহরটাতে বর্তমান পথটার চেয়ে তাড়াতাড়ি যাওয়া যাবে)</p>
+<p>ধরো এই গ্রাফটার জন্য</p>
+<p><img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/graph.jpg" title="graph" alt="graph"></p>
+<p>প্রথমে আমরা 0 কে কিউতে পুশ করবো। এখন 0 এর দূরত্ব হচ্ছে 0 আর বাকি সবার দূরত্ব হচ্ছে অসীম।</p>
+<p>| শহর | দূরত্ব|
+| ------------- |:-------------:|
+| 0 | 0
+|1 | অসীম
+|2 | অসীম
+| 3 | অসীম
+|4 | অসীম</p>
+<p><br>
+0 থেকে যদি আমি 1 এ যাই, তাহলে 1 এর নতুন দূরত্ব হবে 1। 1 কে প্রসেসিং এর জন্য কিউতে ঢুকাই। <br>
+0 থেকে যদি আমি 2 এ যাই, তাহলে 2 এর নতুন দূরত্ব হবে 3। 2 কে প্রসেসিং এর জন্য কিউতে ঢুকাই।<br>
+0 থেকে যদি আমি 3 এ যাই, তাহলে 3 এর নতুন দূরত্ব হবে 6। 3 কে প্রসেসিং এর জন্য কিউতে ঢুকাই।<br></p>
+<p>এখন আমাদের কিউ এর অবস্থা এই রকম 1,2,3<br></p>
+<p>|শহর | দূরত্ব
+| ------------- |:-------------:|
+| 0 | 0
+|1 | 1
+| 2 | 3
+|3 | 6
+|4 | অসীম</p>
+<p>আমরা কিউ এর ডগা থেকে 1 কে বের করে আনবো প্রসেসিং এর জন্য। 1 এর দূরত্ব হচ্ছে 1।</p>
+<p>1 থেকে যদি আমি 0 এ যাই, তাহলে 0 এর নতুন দূরত্ব হবে 1+1 = 2। কোন দরকার নাই আপডেটের, 0 এর দূরত্ব 0।<br>
+1 থেকে যদি আমি 2 এ যাই, তাহলে 2 এর নতুন দূরত্ব হবে 1+1 = 2। 2 কে প্রসেসিং এর জন্য আবার কিউতে ঢুকাই।<br>
+1 থেকে যদি আমি 4 এ যাই, তাহলে 4 এর নতুন দূরত্ব হবে 1+5 = 6। 4 কে প্রসেসিং এর জন্য আবার কিউতে ঢুকাই।<br></p>
+<p>এখন আমাদের কিউ এর অবস্থা এই রকম 2,3,2,4</p>
+<table>
+<thead>
+<tr>
+<th>শহর </th>
+<th style="text-align:center;"> দূরত্ব</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 0 </td>
+<td style="text-align:center;"> 0</td>
+</tr>
+<tr>
+<td>1 </td>
+<td style="text-align:center;"> 1</td>
+</tr>
+<tr>
+<td>2 </td>
+<td style="text-align:center;">2</td>
+</tr>
+<tr>
+<td>3 </td>
+<td style="text-align:center;">6</td>
+</tr>
+<tr>
+<td>4 </td>
+<td style="text-align:center;">6</td>
+</tr>
+</tbody>
+</table>
+<p>আমরা কিউ এর ডগা থেকে 2 কে বের করে আনবো প্রসেসিং এর জন্য। 2 এর দূরত্ব হচ্ছে 2।</p>
+<p>2 থেকে যদি আমি 0 এ যাই, তাহলে 0 এর নতুন দূরত্ব হবে 2+3= 5 । কোন দরকার নাই আপডেটের, 0 এর দূরত্ব 0।<br>
+2 থেকে যদি আমি 1 এ যাই, তাহলে 1 এর নতুন দূরত্ব হবে 2+1= 3 । কোন দরকার নাই আপডেটের, 1 এর দূরত্ব 1।<br>
+2 থেকে যদি আমি 3 এ যাই, তাহলে 3 এর নতুন দূরত্ব হবে 2+2= 4 । 3 কে প্রসেসিং এর জন্য আবার কিউতে ঢুকাই।<br>
+2 থেকে যদি আমি 4 এ যাই, তাহলে 4 এর নতুন দূরত্ব হবে 2+2 = 4। 4 কে প্রসেসিং এর জন্য আবার কিউতে ঢুকাই।<br></p>
+<p>এখন আমাদের কিউ এর অবস্থা এই রকম 3,2,4,3,4</p>
+<p>| শহর | দূরত্ব
+| ------------- |:-------------:|
+| 0 | 0
+| 1 | 1
+| 2 | 2
+|3 | 4
+| 4 | 4</p>
+<p>আমরা কিউ এর ডগা থেকে 3 কে বের করে আনবো প্রসেসিং এর জন্য। 3 এর দূরত্ব হচ্ছে 4।</p>
+<p>3 থেকে যদি আমি 3 এ যাই, তাহলে 0 এর নতুন দূরত্ব হবে 4+6= 10 । কোন দরকার নাই আপডেটের, 0 এর দূরত্ব 0।<br>
+3 থেকে যদি আমি 2 এ যাই, তাহলে 2 এর নতুন দূরত্ব হবে 4+2= 6। কোন দরকার নাই আপডেটের, 2 এর দূরত্ব 2।<br>
+3 থেকে যদি আমি 4 এ যাই, তাহলে 4 এর নতুন দূরত্ব হবে 4+1= 5। কোন দরকার নাই আপডেটের, 4 এর দূরত্ব 4।<br></p>
+<p>এখন আমাদের কিউ এর অবস্থা এই রকম 2,4,3,4</p>
+<p>আর দূরত্বগুলো হচ্ছে</p>
+<table>
+<thead>
+<tr>
+<th> শহর </th>
+<th style="text-align:center;"> দূরত্ব</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 0 </td>
+<td style="text-align:center;"> 0</td>
+</tr>
+<tr>
+<td> 1 </td>
+<td style="text-align:center;">1</td>
+</tr>
+<tr>
+<td> 2 </td>
+<td style="text-align:center;">2</td>
+</tr>
+<tr>
+<td> 3 </td>
+<td style="text-align:center;">4</td>
+</tr>
+<tr>
+<td> 4 </td>
+<td style="text-align:center;">4</td>
+</tr>
+</tbody>
+</table>
+<p>এরপর কিউ খালি না হওয়া পর্যন্ত লুপ চলতে থাকবে। কিন্তু এরপর আর কোন আপডেট হবে না। কারণ এটাই আসলে 0 থেকে বাকি সব শহরগুলোতে যাবার সবচে' জন্য কম দূরত্ব।</p>
+<p>সিপিপিতে এই অ্যালগরিদমটার ইম্প্লিমেন্টেশন হবে এরকম</p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">edge</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">cost</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">infinity</span> <span class="o">=</span> <span class="mi">1000000000</span><span class="p">;</span>
+
+<span class="c1">// edge[i][j] = jth node connected with i</span>
+<span class="c1">// cost[i][j] = cost of that edge</span>
+
+<span class="kt">int</span> <span class="nf">bfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">source</span><span class="p">,</span> <span class="kt">int</span> <span class="n">destination</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">d</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span> <span class="c1">// for storing distance</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span><span class="p">;</span>
+
+  <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+  <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">source</span><span class="p">);</span>
+  <span class="n">d</span><span class="p">[</span><span class="n">source</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">edge</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+      <span class="c1">// updating (also known as relaxing)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">d</span><span class="p">[</span><span class="n">destination</span><span class="p">];</span>
+<span class="p">}</span></code></pre></div>
+<p><a name="section4"></a></p>
+<h3>৪ ডায়াক্সট্রার শর্টেস্ট পাথ অ্যালগরিদম</h3>
+<p>BFS খুবই ভালো জিনিস। সত্যি কথা আমার ভয়াবহ পছন্দের একটা জিনিস BFS কারণ ধাই ধাই করে BFS কোড লিখে ফেলা যায়, যদি তুমি প্রবলেমটাকে গ্রাফের প্রবলেমে পাল্টাই ফেলতে পারো। অল্প কিছু চালাকি দিয়ে BFS কে ফাস্ট করে ফেলা যায়। একটা হয়তো তুমি এখনই দেখতে পাচ্ছো, একটা শহরকে যদি এরিমধ্যে কিউতে থাকে, ওটাকে আবার কিউতে ঢোকানোর কোন মানে নেই। এ ধরণের চালাকিকে আমরা প্রোগ্রামাররা বলি "প্রুনিঙ" ( pruning )। প্রুনিং এর খাস বাংলা হচ্ছে ছাটাই করা - মানে ধরে ছাটাই করে ছোট করে দেয়া।</p>
+<p>BFS এর একটা সমস্যা আছে।
+সেটা হচ্ছে, যদি এমন হয়, যে আমি শহর 5 কে যখন প্রসেস করলাম তার দূরত্ব পেলাম 100। তো আমি ওর আশে পাশের সব শহরকে আপডেট করলাম। তারপর আরেকটু পর আবার 5 কে পেলাম কিউতে তখন তার দূরত্ব হচ্ছে 50। আমি আবার আশেপাশের সবাইকে আপডেট করলাম। তারপর আবার কিউতে 5 কে পেলাম 40 দূরত্ব নিয়ে।</p>
+<p>তো তুমি দেখতে পাচ্ছো, আমাদের আপডেটে একটা সমস্যা আছে - আমরা কিউতে যাকে আগে পাচ্ছি তাকে প্রসেস করছি। তো এভাবে প্রসেস করলে এরকম একটা পরিস্থিতি সম্ভব যেখানে আমরা একই শহরকে বহুবার ভুল দূরত্ব পেয়েও আপডেট করতে থাকবো। ওই শহরের উপর যেসব শহর নির্ভরশীল তারাও বহুবার আপডেট হবে। তাদের উপর যারা নির্ভরশীল তারাও বহুবার আপডেট হবে।</p>
+<p>Edsger W. Dijkstra ১৯৫৯ সালে এই ঝামেলা বন্ধ করার একটা পথ খুঁজে পেলো। সে বলল কি, আমরা আরেকটা চালাকি করে দেখতে পারি, কিউ থেকে যখন শহর বের করে আনবো প্রসেস করার জন্য, আমরা সবচে' কাছের শহরটাকে বের করে আনতে পারি। তাহলে সেই শহরটাকে আর কখনো আরেকবার প্রসেস করা লাগবে না।</p>
+<p><img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/dijkstra.gif" title="graph" alt="graph"></p>
+<div class="caption">ডায়াক্সট্রার অ্যানিমেশন। কার্টেসি - উইকিপিডিয়া।</div>
+<p>তো আমাদের কাজ হচ্ছে শুধু কিউটা তুলে দিয়ে সেখানে একটা প্রায়োরিটি কিউ বসানোর, সে নোডটা সবচে' কম দূরত্বে আছে তাকে আমরা সবার আগে প্রসেস করবো - এটা হচ্ছে আমাদের প্রায়েরিটি।</p>
+<p>সিপিপি তে একটা সহজ ইম্প্লিমেন্টেশন হবে এরকম -</p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">edge</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span> <span class="n">cost</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">infinity</span> <span class="o">=</span> <span class="mi">1000000000</span><span class="p">;</span>
+
+<span class="n">edge</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">jth</span> <span class="n">node</span> <span class="n">connected</span> <span class="n">with</span> <span class="n">i</span>
+<span class="n">cost</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost</span> <span class="n">of</span> <span class="n">that</span> <span class="n">edge</span>
+
+<span class="k">struct</span> <span class="n">data</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">city</span><span class="p">,</span> <span class="n">dist</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="k">operator</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">const</span> <span class="n">data</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">dist</span> <span class="o">&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">dist</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="kt">int</span> <span class="n">source</span><span class="p">,</span> <span class="kt">int</span> <span class="n">destination</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">d</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span> <span class="c1">// for storing distance</span>
+  <span class="n">data</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">;</span>
+  <span class="n">priority_queue</span><span class="o">&lt;</span><span class="n">data</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+  
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">infinity</span><span class="p">;</span>
+  <span class="n">u</span><span class="p">.</span><span class="n">city</span> <span class="o">=</span> <span class="n">source</span><span class="p">,</span> <span class="n">u</span><span class="p">.</span><span class="n">dist</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+  <span class="n">d</span><span class="p">[</span><span class="n">source</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">edge</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">city</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">v</span><span class="p">.</span><span class="n">city</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">city</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+      <span class="n">v</span><span class="p">.</span><span class="n">dist</span> <span class="o">=</span> <span class="n">cost</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">city</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">city</span><span class="p">];</span>
+      <span class="c1">// relaxing </span>
+      <span class="k">if</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">.</span><span class="n">city</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">.</span><span class="n">dist</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">.</span><span class="n">city</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">dist</span><span class="p">;</span>
+        <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">d</span><span class="p">[</span><span class="n">destination</span><span class="p">];</span>
+<span class="p">}</span></code></pre></div>
+<p><a name="section5"></a></p>
+<h3>৫ বেলম্যান ফোর্ডের অ্যালগরিদম</h3>
+<p>গ্রাফটা যদি এরকম হয় তাহলে কি হবে?</p>
+<p>আমরা যতবার ইচ্ছা 2-3-4-1 এ পাক খেতে পারি। যতবার পাক খাবো তত আমাদের 0 থেকে 5 এর দূরত্ব কমবে, তাই না? তো এই লুপ অনন্তবার চলতে থাকবে তো চলতে থাকবে। আমাদের BFS তো ফেইল খাবেই খাবে, ডায়াক্সট্রাও ফেইল খাবে।</p>
+<p>গ্রাফে যদি নেগেটিভ সাইকেল থাকে - শুধু সেক্ষেত্রেই এই ঝামেলা লাগতেসে। তো এই ক্ষেত্রে আমরা বেলম্যান ফোর্ড ব্যবহার করি। খেয়াল করো, যে একটা কানেক্টেড গ্রাফে যদি একটা নেগেটিভ সাইকেল আমরা পাই, তাহলে গ্রাফটাতে শর্টেস্ট পাথ খোঁজার আর কোন মানে হয় না। বেলম্যান ফোর্ড করে কি যতক্ষণ রিল্যাক্স করা যায়, ততক্ষণ রিল্যাক্স করে। (রিলাক্স মানে আপডেট করা) তারপর রিলাক্স করা শেষে সে দেখে এখনো কোন রিলাক্স করার মতো edge আছে কিনা। n-1 বার প্রতিটা নোড নিয়ে আপডেট করলে, ততক্ষণে সবগুলো আপডেট করার মতো নোড আপডেট হয়ে যাবার কথা। যদি তা না হয়, তার মানে অবশ্যই নেগেটিভ একটা সাইকেল আছে কোথাও।</p>
+<p>এখানে রিল্যাক্স করার মানে হচ্ছে যদি এজটা হয় u থেকে v তে আর দৈর্ঘ্য হয় <code>cost[u][v]</code></p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">])</span> <span class="p">{</span>
+  <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">cost</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">];</span>
+<span class="p">}</span></code></pre></div>
+<p>আমার বেলম্যান ফোর্ড ইম্প্লিমেন্টেশনটা দেখতে এরকম -</p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#define M 305</span>
+<span class="cp">#define cycle -33</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">e</span><span class="p">[</span><span class="n">M</span><span class="p">],</span> <span class="n">c</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="n">M</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="n">M</span><span class="p">];</span> <span class="c1">// d is for distance, p for predecessor </span>
+<span class="kt">int</span> <span class="n">inf</span> <span class="o">=</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">29</span><span class="p">;</span> <span class="c1">// 2^29, infinity</span>
+
+<span class="kt">int</span> <span class="nf">bellmanFord</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="n">inf</span><span class="p">;</span> 
+    <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// updating the shortest paths</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// the following two loops iterates </span>
+    <span class="c1">// on the whole set of edges</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// for each node i</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// each edge of i</span>
+        <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">uv</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span> <span class="c1">// simplicity</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">uv</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="p">{</span>
+          <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">uv</span><span class="p">;</span> 
+          <span class="n">p</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span> <span class="c1">// the best way to come to v is through u</span>
+          <span class="n">done</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// found something to update</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">done</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span> <span class="c1">// there was nothing to update</span>
+  <span class="p">}</span>
+  <span class="c1">// looking for cycle</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// for each node i</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each edge of node i</span>
+      <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">uv</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span> <span class="c1">// simplicity!</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">uv</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="k">return</span> <span class="n">cycle</span><span class="p">;</span> <span class="c1">// we found cycle</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">d</span><span class="p">[</span><span class="n">f</span><span class="p">];</span>
+<span class="p">}</span></code></pre></div>
+<p><a name="section6"></a></p>
+<h3>৬ ফ্লয়েড ওয়ার্শাল</h3>
+<p>ফ্লয়েড ওয়ার্শাল এর মূল কন্সেপ্টটা খুব সহজ। তুমি যদি কন্সেপ্টটা বোঝো, তুমি যেকোন ফ্লয়েড ওয়ার্শাল প্রবলেম সলভ করতে পারবে। কিন্তু অ্যালগরিদমটা কেন কাজ করে সেটা বোঝার জন্য তুমি এখানে একটা ঢু মারতে পারো। আমার এই সাধাসিধা টিউটোরিয়ালটা দিয়ে আমি আপাতত কাওকে ভয় পাওয়াতে চাই না কঠিন কিছু লিখে।</p>
+<p>আমি যদি i থেকে j তে যেতে চাই তাহলে , হয় আমি সোজা i থেকে j তে যাবো, অথবা কোন একটা k হয়ে j তে যাবো। যখন আমি k হয়ে যাবো তখন আমার i থেকে j এর সবচে' ছোট দূরত্ব dist[i][j] হবে dist[i][k] + dist[k][j] । এখানে dist[a][b] মানে a থেকে b যাওয়ার সবচে' ছোট পথটার দূরত্ব। আমি যদি সবগুলো k এর জন্য ট্রাই করি একবার করে, তাহলে আপডেট করতে থাকলে আপডেট করার শেষে অবশ্যই dist[a][b] হবে a থেকে b তে যাওয়ার সবচে' ছোট পথ।</p>
+<p>তাহলে অ্যালগরিদমটা দাড়াচ্ছে এরকম</p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">d</span><span class="p">[</span><span class="mi">100</span><span class="p">][</span><span class="mi">100</span><span class="p">];</span> <span class="c1">// d[i][j] = distance from i to j</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="p">}</span></code></pre></div>
+<p>ফ্লয়েড ওয়ার্শালের মজা হচ্ছে এটা লেখা খুব সহজ। সত্যি কথা আমি যখন লিখি কন্টেস্টের সময় ম্যাকরো লাগিয়ে তখন সেটা দেখতে এরকম হয়</p>
+<div class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">REP</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">REP</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">REP</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="p">)</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span></code></pre></div>
+<p>আর আরেকটা সুবিধা হচ্ছে, বাকি সব অ্যালগরিদম একটা শহরকে ধরে নেয় শুরুর শহর (source), তারপর বাকি সবগুলো শহরের দূরত্ব বের করে ওই শহরটা থেকে। এটাকে আমরা বলি Single Source Shortest Path (SSSP)। ফ্লয়েড ওয়ার্শাল করে কি সবগুলো শহর থেকে সবগুলো শহরের শর্টেস্ট পাথ বের করে ফেলে। তোমার অ্যলগরিদম শেষে তুমি যদি জানতে চাও a থেকে b এর দূরত্ব কত সেটা তুমি dist[a][b] থেকেই পেয়ে যাবে।</p>
+<p><a name="section7"></a></p>
+<h3>৭ টাইম কম্প্লেক্সিটি</h3>
+<p>খুব রাফলি,</p>
+<ul>
+<li>BFS এর কম্প্লেক্সিটি হচ্ছে <span>$\mathcal{O}(n^{2})$</span></li>
+<li>ডায়াক্সট্রার কম্প্লেক্সিটি হচ্ছে <span>$\mathcal{O}(nlogn)$</span></li>
+<li>বেলম্যান ফোর্ড <span>$\mathcal{O}(n^{3})$</span></li>
+<li>ফ্লয়েড ওয়ার্শাল <span>$\mathcal{O}(n^{3})$</span></li>
+</ul>
+<p>যখন ইনপুটের সাইজ দেখবা, যেটা লিখতে সবচে' সোজা আর যেই অ্যালগরিদমটা কাজ করবে, সেটা লিখবা। যেমন ধরো n যদি 100 এর ছোট হয়, কোন দরকার নাই BFS লিখে মারা যাবার। একটা ছোট্ট ফ্লয়েড লিখে ফেলো। আবার হিসেব করে যদি দেখো যে BFS এ পোষাচ্ছে ভুলেও ডায়াক্সট্রা লিখতে যেও না। আর খেয়াল রেখো গ্রাফটাতে নেগেটিভ সাইকেল আছে কিনা। যদি থাকে সাবধানে বেলম্যান ফোর্ড লিখে ফেইলো।</p>
+<p><a name="section8"></a></p>
+<h3>৮ উপসংহার</h3>
+<p>শর্টেস্ট পাথ প্রবলেমগুলোর আসল ব্যাপার হচ্ছে প্রবলেমটাকে গ্রাফে মডেল করা। তারপরে অ্যালগরিদমগুলো ব্যবহার করে শর্টেস্ট পাথ বের করে ফেলা যায়।</p>
+<p><a name="section9"></a></p>
+<h3>৯ প্রবলেম লিস্ট</h3>
+<h4>৯.১ BFS প্রবলেম</h4>
+<div class="greybox">
+<div class="ref1">
+<a href="http://www.spoj.com/problems/ANARC05I/" class="olink"> ১ - "What is your Logo" (আরব এবং নর্থ আফ্রিকা ২০০৫)</a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.com/problems/BYTESE1/" class="olink"> ২ - পরিতোশ আগারওয়াল - "Lucius Dungeon" </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.com/problems/CHMAZE/" class="olink"> ৩ - ড্যানিয়েল গোমেজ দিদিয়ার - "Changing Maze" </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/CLEANRBT" class="olink"> ৪ - "Cleaning Robot" (জাপান ডোমেস্টিক ২০০৫)</a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/CLOCKS" class="olink"> ৫ - "The Clocks" (IOI ১‌৯৯৪)</a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/CURSE" class="olink"> ৬ - "The Pharaoh Curse" </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/DP" class="olink"> ৭ - "Deliver pizza" </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/ESCJAILA" class="olink"> ৮ - "Escape from Jail Again" (FCEyN UBA সিলেকশন ২০১০)</a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/HIKE" class="olink"> ৯ - অ্যাড্রিয়ান কুগেল - "Hike on a Graph" (ইউনিভার্সিটি অফ উলম - লোকাল ২০০০) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/INUMBER" class="olink"> ১০ - "Interesting number" (টিম চ্যাম্পিয়নশিপ সেইন্ট পিটার্সবার্গ ২০০৫) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/MAWORK" class="olink"> ১১ - "Men at work" (সাউথ ওয়েস্টার্ন ইউরোপিয়ান, ২০০৩) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/MLASERP" class="olink"> ১২ - "Laser Phones" (USACO জানুয়ারী, ২০০৯) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/MTWALK" class="olink"> ১৩ - "Mountain Walking" (USACO ওপেন, ২০০৩) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/ONEZERO" class="olink"> ১৪ - "Ones and zeros" (পোলিশ অলিম্পিয়াড ইন ইনফরমেটিক্স, ১৯৯৪) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/PPATH" class="olink"> ১৫ - "Prime Path" (নর্থ ওয়েস্টার্ন ইউরোপিয়ান, ২০০৬) </a>
+</div>
+</div>
+<h4>৯.২ ডায়াক্সট্রা প্রবলেম</h4>
+<div class="greybox">
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/GONDOR" class="olink"> ১ - "Gondor" (ক্রোয়েশিয়ান ন্যাশনাল, ২০০৮) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/HIGHWAYS" class="olink"> ২ - "Highways" </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/INCARDS" class="olink"> ৩ - "Invitation Cards" (সেন্ট্রাল ইউরোপিয়ান, ১৯৯৮) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/MELE3" class="olink"> ৪ - "MELE3" (ক্রোয়েশিয়ান অলিম্পিয়ান ইন ইনফরমেটিক্স, ২০০৩) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/NAJKRACI" class="olink"> ৫ - "Najkraci" (ক্রোয়েশিয়ান অলিম্পিয়ান ইন ইনফরমেটিক্স, ২০০৮) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/SHPATH" class="olink"> ৬ - "The Shortest Path" (DASM প্রোগ্রামিং লীগ, ২০০৩) </a>
+</div>
+<div class="ref1">
+<a href="http://www.spoj.pl/problems/TRAFFICN" class="olink"> ৭ - "Traffic Network" (হো চি মিন সিটি, ২০০৮) </a>
+</div>
+</div>
+</div>
+<div class="fb-like pull-left fb_iframe_widget" data-href="http://progkriya.org/gyan/shortest-path.html" data-width="100" data-layout="button_count" data-show-faces="true" data-send="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=0&amp;href=http%3A%2F%2Fprogkriya.org%2Fgyan%2Fshortest-path.html&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=true&amp;width=100"><span style="vertical-align: bottom; width: 75px; height: 20px;"><iframe name="f2d37276c9e6524" width="100px" height="1000px" data-testid="fb:like Facebook Social Plugin" title="fb:like Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/like.html" style="border: none; visibility: visible; width: 75px; height: 20px;" __idm_frm__="123" class=""></iframe></span></div>
+<ul class="inline tags">
+<li><i class="icon-tags"></i></li>
+<li><a href="http://www.progkriya.org/tag/algorithm">algorithm</a></li>
+<li><a href="http://www.progkriya.org/tag/graph-theory">graph-theory</a></li>
+<li><a href="http://www.progkriya.org/tag/sssp">sssp</a></li>
+</ul>
+<br>
+<div class="media">
+<a class="pull-left" href="http://www.progkriya.org/gyan/shortest-path.html#">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/iqram.jpeg" class="img-polaroid">
+</a>
+<div class="media-body author-description">
+<h4 class="media-heading">ইকরাম মাহমুদ</h4>
+ইকরাম মাহমুদ ২০০৯ এবং ২০১২ এর ACM ICPC ওয়ার্ল্ড ফাইনালিস্ট। আন্তর্জাতিক ইনফরমেটিক্স অলিম্পিয়াডে বাংলাদেশের প্রতিনিধিত্ব করেছেন ২০০৬ এবং ২০০৭ এ।
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="span4">
+</div>
+<div class="span7 footer">
+<div class="pull-left inline">
+<a href="https://facebook.com/progkriya" class="hidden">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/progkriya50i.png" class="tinyicon">
+</a>
+<a href="https://facebook.com/progkriya">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/facebook.png" class="tinyicon">
+</a>
+<a href="https://twitter.com/progkriya/">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/twitter.png" class="tinyicon">
+</a>
+<a href="mailto:mailbox@progkriya.org">
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/email.png" class="semitinyicon">
+</a>
+</div>
+<div>
+<img src="./গ্রাফ থিওরী - শর্টেস্ট পাথ প্রবলেম_files/copyright3.png" class="tootinyicon">
+</div>
+</div>
+</div>
+</div>
+
+
+</body></html>
