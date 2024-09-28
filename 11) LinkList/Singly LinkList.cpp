@@ -82,7 +82,7 @@ int main()
 
       tptr=List;
       for(int i=0;i<n;i++){
-        if(tptr->next->data>nptr->data){
+        if(tptr->next->data > nptr->data){
             nptr->next=tptr->next;
             tptr->next=nptr;
             break;
@@ -106,9 +106,13 @@ int main()
       for(int i=0;i<n+1;i++){
         if(tptr->data==del){
            pptr->next=tptr->next;
+           delete(tptr);
         }
-        pptr=tptr;
+        else{
+            pptr=tptr;
         tptr=tptr->next;
+        }
+        
       }
 
       cout<<"After Delete the new output is : ";
